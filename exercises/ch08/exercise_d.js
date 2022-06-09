@@ -12,8 +12,23 @@
 //
 // Remember either's two arguments must return the same type.
 
+const trace = curry((msg, object) => {
+    console.log(msg, inspect(object));
+    return object;
+});
+
 // validateName :: User -> Either String ()
-const validateName = undefined;
+const validateName = ({ name }) => (name.length > 3
+    ? Either.of(null)
+    : left('Your name need to be > 3')
+);
+
+const saveAndWelcome = compose(map(showWelcome), save);
 
 // register :: User -> IO String
-const register = compose(undefined, validateUser(validateName));
+const register = compose(
+    trace("either   -> "),
+    either(IO.of, saveAndWelcome),
+    trace("validate -> "),
+    validateUser(validateName)
+);

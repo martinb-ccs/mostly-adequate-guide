@@ -8,5 +8,23 @@
 // which adds a new email to the mailing list if valid, and then notify the whole
 // list.
 
+const trace = curry((msg, object) => {
+    console.log(msg, inspect(object));
+    return object;
+});
+
 // joinMailingList :: Email -> Either String (IO ())
-const joinMailingList = undefined;
+const joinMailingList = compose(
+    trace("output"),
+    map(
+        compose(
+            trace("emailBlast"),
+            chain(emailBlast),
+            trace("addToMailingList"),
+            addToMailingList,
+            trace("input")
+        )
+    ),
+    trace("validateEmail"),
+    validateEmail
+);

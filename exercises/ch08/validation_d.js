@@ -27,7 +27,7 @@ assert(
 const callees = register.callees || [];
 
 assert(
-  callees[callees.length - 1] === 'either',
+  callees[callees.length - 2] === 'either',
   'The function `register` seems incorrect; hint: you can use `either` to branch an `Either` to different outcomes!',
 );
 

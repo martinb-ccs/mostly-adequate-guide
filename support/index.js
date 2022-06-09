@@ -396,6 +396,10 @@ class Maybe {
   }
 
   [util.inspect.custom]() {
+    return this.inspect();
+  }
+
+  inspect() {
     return this.isNothing ? 'Nothing' : `Just(${inspect(this.$value)})`;
   }
 

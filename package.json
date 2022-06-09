@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "The Mostly Adequate Guide to Functional Programming",
   "dependencies": {
+    "data.task": "^3.1.2",
+    "gitbook-plugin-exercises": "MostlyAdequate/plugin-exercises",
     "gitbook-plugin-include-codeblock": "^3.2.2",
-    "gitbook-plugin-exercises": "MostlyAdequate/plugin-exercises"
+    "jsdom": "^19.0.0",
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "gitbook-cli": "^2.3.2"

@@ -19,12 +19,17 @@ require(['jquery', 'ramda'], ($, { compose, curry, map, prop }) => {
 
   const img = src => $('<img />', { src });
   const mediaUrl = compose(prop('m'), prop('media'));
-  const mediaUrls = compose(map(mediaUrl), prop('items'));
-  const images = compose(map(img), mediaUrls);
+  
+  // const mediaUrls = compose(map(mediaUrl), prop('items'));
+  // const images = compose(map(img), mediaUrls);
 
+  // refactor to
+  const mediaToImg = compose(img, mediaUrl);
+  const images = compose(map(mediaToImg), prop('items'));
+  
   // -- Impure ---------------------------------------------------------
   const render = compose(Impure.setHtml('#js-main'), images);
   const app = compose(Impure.getJSON(render), url);
 
-  app('cats');
+  app('hamster');
 });
